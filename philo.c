@@ -18,13 +18,13 @@ long    get_timestamp(t_env env)
 void    ft_eat(int philo, t_env env)
 {
     printf("%d is eating\n", philo, get_timestamp(env));
-    usleep(time_to_eat * 1000);
+    usleep(env.time_to_eat * 1000);
 }
 
 void    ft_sleep(int philo, t_env env)
 {
     printf("%d is sleeping\n", philo, get_timestamp(env));
-    usleep(time_to_sleep * 1000);
+    usleep(env.time_to_sleep * 1000);
 }
 
 void	ft_take_fork(int philo, t_env env)
@@ -47,5 +47,4 @@ int main(int ac, char **av)
     t_env env;
 
     gettimeofday(&env.start, NULL);
-    printf("%lu", get_timestamp(env));
 }
