@@ -6,40 +6,66 @@ hour       = sec_of_day / (60 * 60);
 minute     = sec_of_day % (60 * 60) / 60;
 */
 
-long    get_timestamp(t_env env)
+long    get_timestamp(long start)
 {
-    long    delta;
+    long            delta;
+    struct timeval  now;
 
-    gettimeofday(&env.now, NULL);
-    delta = (env.now.tv_sec - env.start.tv_sec) * 1000;
+    gettimeofday(&now, NULL);
+    delta = (now.tv_sec - start) * 1000;
 	return (delta);
 }
 
-void    ft_eat(int philo, t_env env)
+void    ft_eat(t_philo philo)
 {
-    printf("%d is eating\n", philo, get_timestamp(env));
+    t_env   env;
+
+    env = *philo.vars;
+    pthread_mutex_lock(&env.output);
+    printf("%d %d is eating\n", get_timestamp(env.start.tv_sec), philo.number);
+    pthread_mutex_unlock(&env.output);
     usleep(env.time_to_eat * 1000);
 }
 
-void    ft_sleep(int philo, t_env env)
+void    ft_sleep(t_philo philo)
 {
-    printf("%d is sleeping\n", philo, get_timestamp(env));
+    t_env   env;
+
+    env = *philo.vars;
+    pthread_mutex_lock(&env.output);
+    printf("%d %d is sleeping\n", get_timestamp(env.start.tv_sec), philo.number);
+    pthread_mutex_unlock(&env.output);
     usleep(env.time_to_sleep * 1000);
 }
 
-void	ft_take_fork(int philo, t_env env)
+void	ft_take_fork(t_philo philo)
 {
-	printf("%d has taken a fork\n", philo, get_timestamp(env));
+    t_env   env;
+
+    env = *philo.vars;
+    pthread_mutex_lock(&env.output);
+	printf("%d %d has taken a fork\n", get_timestamp(env.start.tv_sec), philo.number);
+    pthread_mutex_unlock(&env.output);
 }
 
-void	ft_die(int philo, t_env env)
+void	ft_die(t_philo philo)
 {
-	printf("%d died\n", philo, get_timestamp(env));
+    t_env   env;
+
+    env = *philo.vars;
+    pthread_mutex_lock(&env.output);
+	printf("%d %d died\n", get_timestamp(env.start.tv_sec), philo.number);
+    pthread_mutex_unlock(&env.output);
 }
 
-void	ft_think(int philo, t_env env)
+void	ft_think(t_philo philo)
 {
-	printf("%d is thinking\n", philo, get_timestamp(env));
+    t_env   env;
+
+    env = *philo.vars;
+    pthread_mutex_lock(&env.output);
+	printf("%d %d is thinking\n", get_timestamp(env.start.tv_sec), philo.number);
+    pthread_mutex_unlock(&env.output);
 }
 
 int main(int ac, char **av)
