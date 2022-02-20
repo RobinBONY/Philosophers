@@ -26,7 +26,7 @@ typedef struct  s_philo
     long    		last_meal;
 	int				meal_counter;
 	pthread_mutex_t fork;
-	struct s_philo	neighbour;
+	struct s_philo	next;
     struct s_env    *vars;
 }               t_philo;
 
@@ -37,8 +37,12 @@ typedef struct  s_env
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				end_condition;
+	pthread_t		*thread_philos;
     pthread_mutex_t output;
 	struct timeval	start;
 }               t_env;
+
+int	ft_isdigit(int c);
+int	ft_atoi(const char *str);
 
 #endif
