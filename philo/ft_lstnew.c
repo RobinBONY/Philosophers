@@ -6,18 +6,24 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:41:44 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/07 10:58:23 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/02/21 08:24:58 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	*ft_lstnew(int x, int y, int z)
+t_philo	*ft_lstnew(int nb, t_env *env)
 {
 	t_philo	*newlst;
 
 	newlst = malloc(sizeof(t_philo));
 	if (!newlst)
 		return (NULL);
+	newlst->number = nb;
+	newlst->last_meal = get_timestamp(env->start.tv_sec);
+	newlst->meal_counter = 0;
+	newlst->vars = env;
+	newlst->next = NULL;
+	pthread_mutex_init(&newlst->fork, NULL);
 	return (newlst);
 }
