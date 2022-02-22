@@ -140,9 +140,9 @@ t_philo	*init_philos(t_env *env)
 	t_philo	*philos;
 	t_philo *new_node;
 
-	i = 0;
+	i = 1;
 	philos = NULL;
-	while (i < env->nb_philo)
+	while (i <= env->nb_philo)
 	{
 		new_node = ft_lstnew(i, env);
 		if (!new_node)
@@ -195,7 +195,7 @@ int	is_dead(t_philo philo)
 	t_env	env;
 
 	env = *philo.vars;
-	if (get_timestamp(env.start.tv_sec) - philo.last_meal < env.time_to_die)
+	if (get_timestamp(env.start.tv_sec) - philo.last_meal > env.time_to_die)
 		return (1);
 	return (0);
 }
