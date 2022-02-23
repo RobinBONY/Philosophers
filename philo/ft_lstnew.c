@@ -24,7 +24,7 @@ t_philo	*ft_lstnew(int nb, t_env *env)
 	newlst->meal_counter = 0;
 	newlst->vars = env;
 	newlst->next = NULL;
-	newlst->death = 0;
+	newlst->alive = 1;
 	pthread_mutex_init(&newlst->fork, NULL);
 	return (newlst);
 }

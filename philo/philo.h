@@ -25,7 +25,7 @@ typedef struct  s_philo
     int     		number;
     long    		last_meal;
 	int				meal_counter;
-	int				death;
+	int				alive;
 	pthread_mutex_t	fork;
     struct s_env    *vars;
 	struct s_philo	*next;
@@ -44,17 +44,18 @@ typedef struct  s_env
 }               t_env;
 
 long	get_timestamp(struct timeval start);
+void    manage_threads(t_env env, t_philo *philo);
 void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo philo);
 void	ft_take_fork(t_philo philo);
-void	*ft_die(t_philo *philo);
+void	ft_die(t_philo philo);
 void	ft_think(t_philo philo);
 int		arg_valid(char *str);
 int		check_params(int argc, char **argv);
 int		init_env(int argc, char **argv, t_env *env);
 t_philo	*init_philos(t_env *env);
-int		take_forks_pair(t_philo *philo);
-int		take_forks_impair(t_philo *philo);
+void	take_forks_pair(t_philo *philo);
+void	take_forks_impair(t_philo *philo);
 int		is_dead(t_philo philo);
 void	*fn_philo(void *arg);
 int		clean(t_env *env, t_philo *philos);
