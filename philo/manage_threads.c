@@ -16,7 +16,7 @@ void    kill_philos(t_philo *philo)
 {
     while (philo->alive)
     {
-        philo->alive--;
+        philo->alive = 0;
         philo = philo->next;
     }
 }
@@ -30,11 +30,6 @@ void    manage_threads(t_env env, t_philo *philo)
             ft_die(*philo);
             kill_philos(philo);
             break;
-        }
-        if (env.end_condition != -1)
-        {
-            if (philo->meal_counter >= env.end_condition)
-                philo->alive--;
         }
         philo = philo->next;
     }

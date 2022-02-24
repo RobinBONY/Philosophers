@@ -222,6 +222,11 @@ void	*fn_philo(void *arg)
 			take_forks_impair(philo);
 		ft_sleep(*philo);
 		ft_think(*philo);
+		if (env.end_condition != -1)
+        {
+            if (philo->meal_counter == env.end_condition)
+                philo->alive = 0;
+        }
 	}
 	return (NULL);
 }
