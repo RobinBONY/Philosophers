@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 15:41:44 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/22 11:42:27 by rbony            ###   ########lyon.fr   */
+/*   Created: 2021/11/10 16:05:27 by rbony             #+#    #+#             */
+/*   Updated: 2022/02/07 11:02:09 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-t_philo	*ft_lstnew(int nb, t_env *env)
+t_philo	*ft_lstlast(t_philo *lst)
 {
-	t_philo	*newlst;
+	t_philo	*tmp;
 
-	newlst = malloc(sizeof(t_philo));
-	if (!newlst)
+	tmp = lst;
+	if (!tmp)
 		return (NULL);
-	newlst->number = nb;
-	newlst->last_meal = get_timestamp(env->start);
-	newlst->meal_counter = 0;
-	newlst->vars = env;
-	newlst->next = NULL;
-	newlst->alive = 1;
-	pthread_mutex_init(&newlst->fork, NULL);
-	return (newlst);
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	return (tmp);
 }

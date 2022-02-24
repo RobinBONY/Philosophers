@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 16:07:54 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/07 09:37:53 by rbony            ###   ########lyon.fr   */
+/*   Created: 2021/11/02 13:25:09 by rbony             #+#    #+#             */
+/*   Updated: 2021/11/02 16:30:42 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-void	ft_lstadd_back(t_philo **alst, t_philo *new)
+int	ft_isdigit(int c)
 {
-	t_philo	*last;
-
-	if (!*alst)
+	if (c >= '0' && c <= '9')
 	{
-		*alst = new;
-		return ;
+		return (1);
 	}
-	last = ft_lstlast(*alst);
-	last->next = new;
+	return (0);
 }

@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 13:25:09 by rbony             #+#    #+#             */
-/*   Updated: 2021/11/02 16:30:42 by rbony            ###   ########lyon.fr   */
+/*   Created: 2021/11/10 15:41:44 by rbony             #+#    #+#             */
+/*   Updated: 2022/02/22 11:42:27 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-int	ft_isdigit(int c)
+t_philo	*ft_lstnew(int nb, t_env *env)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	return (0);
+	t_philo	*newlst;
+
+	newlst = malloc(sizeof(t_philo));
+	if (!newlst)
+		return (NULL);
+	newlst->number = nb;
+	newlst->last_meal = get_timestamp(env->start);
+	newlst->meal_counter = 0;
+	newlst->vars = env;
+	newlst->next = NULL;
+	newlst->alive = 1;
+	pthread_mutex_init(&newlst->fork, NULL);
+	return (newlst);
 }

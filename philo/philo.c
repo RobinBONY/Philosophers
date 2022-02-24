@@ -12,12 +12,6 @@
 
 #include "philo.h"
 
-/*
-sec_of_day = epoch.tv_sec % (24 * 60 * 60);
-hour       = sec_of_day / (60 * 60);
-minute     = sec_of_day % (60 * 60) / 60;
-*/
-
 long	get_timestamp(struct timeval start)
 {
 	struct timeval	end;
@@ -37,7 +31,7 @@ void	ft_eat(t_philo *philo)
 		philo->last_meal = get_timestamp(env.start);
 		philo->meal_counter++;
 		pthread_mutex_lock(&env.output);
-		printf("%ld %d is eating\n", get_timestamp(env.start), philo->number);
+		printf("%ld	%d	is eating\n", get_timestamp(env.start), philo->number);
 		pthread_mutex_unlock(&env.output);
 		usleep(env.time_to_eat * 1000);
 	}
@@ -51,7 +45,7 @@ void	ft_sleep(t_philo philo)
 	{
 		env = *philo.vars;
 		pthread_mutex_lock(&env.output);
-		printf("%ld %d is sleeping\n", get_timestamp(env.start), philo.number);
+		printf("%ld	%d	is sleeping\n", get_timestamp(env.start), philo.number);
 		pthread_mutex_unlock(&env.output);
 		usleep(env.time_to_sleep * 1000);
 	}
@@ -65,7 +59,7 @@ void	ft_take_fork(t_philo philo)
 	{
 		env = *philo.vars;
 		pthread_mutex_lock(&env.output);
-		printf("%ld %d has taken a fork\n", get_timestamp(env.start),
+		printf("%ld	%d	has taken a fork\n", get_timestamp(env.start),
 			philo.number);
 		pthread_mutex_unlock(&env.output);
 	}
@@ -78,7 +72,7 @@ void	ft_die(t_philo philo)
 	env = *philo.vars;
 		
 	pthread_mutex_lock(&env.output);
-	printf("%ld %d died\n", get_timestamp(env.start), philo.number);
+	printf("%ld	%d	died\n", get_timestamp(env.start), philo.number);
 	printf("dead at %ld\n", philo.last_meal + env.time_to_die);
 	pthread_mutex_unlock(&env.output);
 }
@@ -91,7 +85,7 @@ void	ft_think(t_philo philo)
 	{
 		env = *philo.vars;
 		pthread_mutex_lock(&env.output);
-		printf("%ld %d is thinking\n", get_timestamp(env.start), philo.number);
+		printf("%ld	%d	is thinking\n", get_timestamp(env.start), philo.number);
 		pthread_mutex_unlock(&env.output);
 	}
 }
@@ -216,17 +210,17 @@ void	*fn_philo(void *arg)
 	env = *philo->vars;
 	while (philo->alive)
 	{
-		if (philo->number % 2 == 0)
-			take_forks_pair(philo);
-		else
-			take_forks_impair(philo);
-		ft_sleep(*philo);
-		ft_think(*philo);
 		if (env.end_condition != -1)
         {
             if (philo->meal_counter == env.end_condition)
                 philo->alive = 0;
         }
+		if (philo->number % 2 == 1)
+			take_forks_impair(philo);
+		else
+			take_forks_pair(philo);
+		ft_sleep(*philo);
+		ft_think(*philo);
 	}
 	return (NULL);
 }
