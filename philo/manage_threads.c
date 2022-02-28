@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   manage_threads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/22 11:43:57 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/02/28 10:59:01 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void    manage_threads(t_env env, t_philo *philo)
     {
         if (is_dead(*philo))
         {
-            ft_die(*philo);
             kill_philos(philo);
+            usleep(1000);
+            ft_die(*philo);
             break;
         }
         if (is_finished(philo))

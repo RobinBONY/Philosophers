@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/22 11:43:57 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/02/28 10:57:59 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,9 +195,12 @@ int	is_dead(t_philo philo)
 {
 	t_env	env;
 
-	env = *philo.vars;
-	if (get_timestamp(env.start) - philo.last_meal >= env.time_to_die)
-		return (1);
+	if (philo.alive)
+	{
+		env = *philo.vars;
+		if (get_timestamp(env.start) - philo.last_meal > env.time_to_die)
+			return (1);
+	}
 	return (0);
 }
 
