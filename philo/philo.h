@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:20:01 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/22 11:43:30 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/02/28 16:21:52 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@
 # include <time.h>
 # include <pthread.h>
 
-typedef struct  s_philo
+typedef struct s_philo
 {
-    int     		number;
-    long    		last_meal;
+	int				number;
+	long			last_meal;
 	int				meal_counter;
 	int				alive;
 	pthread_mutex_t	fork;
-    struct s_env    *vars;
+	struct s_env	*vars;
 	struct s_philo	*next;
-}               t_philo;
+}				t_philo;
 
-typedef struct  s_env
+typedef struct s_env
 {
 	int				nb_philo;
 	int				time_to_die;
@@ -39,12 +39,12 @@ typedef struct  s_env
 	int				time_to_sleep;
 	int				end_condition;
 	pthread_t		*thread_philos;
-    pthread_mutex_t output;
+	pthread_mutex_t	output;
 	struct timeval	start;
-}               t_env;
+}				t_env;
 
 long	get_timestamp(struct timeval start);
-void    manage_threads(t_env env, t_philo *philo);
+void	manage_threads(t_env env, t_philo *philo);
 void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo philo);
 void	ft_take_fork(t_philo philo);
