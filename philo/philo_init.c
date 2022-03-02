@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:25:34 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/28 16:26:13 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 08:02:51 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	init_env(int argc, char **argv, t_env *env)
 {
 	if (check_params(argc, argv))
+	{
+		printf("%s\n", "Invalid argument");
 		return (1);
+	}
 	env->nb_philo = ft_atoi(argv[1]);
 	env->time_to_die = ft_atoi(argv[2]);
 	env->time_to_eat = ft_atoi(argv[3]);

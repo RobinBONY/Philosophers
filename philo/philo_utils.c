@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:23:59 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/28 16:24:57 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 08:01:24 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	check_params(int argc, char **argv)
 			return (1);
 		i++;
 	}
+	if (ft_atoi(argv[1]) == 0 || ft_atoi(argv[1]) == 1)
+		return (1);
 	return (0);
 }
 
