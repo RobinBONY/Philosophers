@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../../headers/philo.h"
 
 static int	ft_isspace(int c)
 {

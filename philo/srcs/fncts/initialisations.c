@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_init.c                                       :+:      :+:    :+:   */
+/*   initialisations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:25:34 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/02 08:02:51 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/05 01:41:28 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../../headers/philo.h"
 
 int	init_env(int argc, char **argv, t_env *env)
 {
@@ -26,11 +26,13 @@ int	init_env(int argc, char **argv, t_env *env)
 	env->end_condition = -1;
 	if (argc == 6)
 		env->end_condition = ft_atoi(argv[5]);
+	env->afk = 0;
 	gettimeofday(&env->start, NULL);
 	env->thread_philos = malloc(env->nb_philo * sizeof(pthread_t));
 	if (!env->thread_philos)
 		return (1);
 	pthread_mutex_init(&env->output, NULL);
+	pthread_mutex_init(&env->is_afk, NULL);
 	return (0);
 }
 

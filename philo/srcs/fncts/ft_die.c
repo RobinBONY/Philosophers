@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_die.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 13:25:09 by rbony             #+#    #+#             */
-/*   Updated: 2021/11/02 16:30:42 by rbony            ###   ########lyon.fr   */
+/*   Created: 2022/02/28 16:22:43 by rbony             #+#    #+#             */
+/*   Updated: 2022/03/05 01:44:49 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../../headers/philo.h"
 
-int	ft_isdigit(int c)
+void	ft_die(t_philo philo)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	return (0);
+	t_env	env;
+
+	env = *philo.vars;
+	pthread_mutex_lock(&env.output);
+	printf("%ld	%d	died\n", get_timestamp(env.start), philo.number);
+	printf("dead at %ld\n", philo.last_meal + env.time_to_die);
+	pthread_mutex_unlock(&env.output);
 }

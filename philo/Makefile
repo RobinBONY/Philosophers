@@ -6,27 +6,35 @@
 #    By: rbony <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 08:34:54 by rbony             #+#    #+#              #
-#    Updated: 2022/02/28 16:27:28 by rbony            ###   ########lyon.fr    #
+#    Updated: 2022/03/05 01:52:47 by rbony            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS = 	philo.c								\
-		philo_init.c						\
-		manage_threads.c					\
-		actions.c							\
-		philo_utils.c						\
-		libft/ft_atoi.c						\
-		libft/ft_isdigit.c					\
-		libft/ft_lstlast.c					\
-		libft/ft_lstnew.c					\
-		libft/ft_lstclear.c					\
-		libft/ft_lstadd_back.c				\
+SRCS = 	srcs/philo.c					\
+		srcs/philo_utils.c				\
+		srcs/fncts/ft_atoi.c			\
+		srcs/fncts/ft_die.c				\
+		srcs/fncts/ft_eat.c				\
+		srcs/fncts/ft_isdigit.c			\
+		srcs/fncts/ft_lstadd_back.c		\
+		srcs/fncts/ft_lstclear.c		\
+		srcs/fncts/ft_lstlast.c			\
+		srcs/fncts/ft_lstnew.c			\
+		srcs/fncts/ft_sleep.c			\
+		srcs/fncts/ft_take_fork.c		\
+		srcs/fncts/ft_think.c			\
+		srcs/fncts/initialisations.c	\
+		srcs/fncts/kill_philos.c		\
+		srcs/fncts/manage_threads.c		\
+		srcs/fncts/routine.c			\
+		srcs/fncts/take_forks.c			\
+		
 
 OBJS = ${SRCS:.c=.o}
 
-INCLUDES = 	philo.h
+HEADERS = 	headers/philo.h				\
 
 CC = gcc
 RM = rm -f
@@ -38,7 +46,7 @@ all: ${NAME}
 $(NAME): ${OBJS}
 	${CC} ${OBJS} -lpthread -o ${NAME}
 	
-%.o : %.c ${INCLUDES}
+%.o : %.c ${HEADERS}
 	${CC} -c $< -o ${<:.c=.o}
 
 clean:

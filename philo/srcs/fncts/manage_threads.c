@@ -6,55 +6,30 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/02/28 10:59:01 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/05 02:15:50 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../../headers/philo.h"
 
-void    kill_philos(t_philo *philo)
-{
-    while (philo->alive)
-    {
-        philo->alive = 0;
-        philo = philo->next;
-    }
-}
-
-int is_finished(t_philo *philo)
-{
-    int i;
-    int dead;
-    int nb_philo;
-
-    i = 0;
-    dead = 0;
-    nb_philo = philo->vars->nb_philo;
-	while (i < nb_philo)
-	{
-        if (!philo->alive)
-            dead++;
-		philo = philo->next;
-		i++;
-	}
-    if (dead == nb_philo)
-        return (1);
-    return (0);
-}
-
-void    manage_threads(t_env env, t_philo *philo)
+void    manage_threads(t_env *env, t_philo *philo)
 {
     while (philo)
     {
-        if (is_dead(*philo))
+        if (is_dead(philo))
         {
             kill_philos(philo);
             usleep(1000);
             ft_die(*philo);
             break;
         }
-        if (is_finished(philo))
+        pthread_mutex_lock(&env->is_afk);
+        if (env->afk == env->nb_philo)
+        {
+            pthread_mutex_unlock(&env->is_afk);
             break ;
+        }
+        pthread_mutex_unlock(&env->is_afk);
         philo = philo->next;
     }
 }
