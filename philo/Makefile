@@ -6,7 +6,7 @@
 #    By: rbony <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 08:34:54 by rbony             #+#    #+#              #
-#    Updated: 2022/03/08 01:36:11 by rbony            ###   ########lyon.fr    #
+#    Updated: 2022/03/08 01:42:44 by rbony            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ clean:
 	${RM} ${OBJS}
 
 fclean:	clean
-	${RM} ${NAME} ${EXECUTABLE}
+	${RM} ${NAME}
 
 re:	fclean all
          

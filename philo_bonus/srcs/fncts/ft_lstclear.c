@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:03:00 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 01:39:39 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 19:42:44 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo_bonus.h"
 
 void	ft_lstclear(t_philo **lst)
 {
@@ -25,7 +25,7 @@ void	ft_lstclear(t_philo **lst)
 	while (i < nb_philo)
 	{
 		last = (*lst)->next;
-		pthread_mutex_destroy(&(*lst)->fork);
+		sem_close((*lst)->fork);
 		pthread_mutex_destroy(&(*lst)->is_alive);
 		pthread_mutex_destroy(&(*lst)->is_eating);
 		free(*lst);

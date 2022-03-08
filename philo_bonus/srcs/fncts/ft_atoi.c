@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:01:33 by rbony             #+#    #+#             */
-/*   Updated: 2021/11/22 17:53:47 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:55:34 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo_bonus.h"
 
 static int	ft_isspace(int c)
 {

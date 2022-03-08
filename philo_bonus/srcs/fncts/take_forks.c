@@ -6,23 +6,23 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 01:05:50 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 20:08:17 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo_bonus.h"
 
 void	take_forks_pair(t_philo *philo)
 {
 	if (philo->alive)
 	{
-		pthread_mutex_lock(&philo->fork);
+		sem_wait(philo->fork);
 		ft_take_fork(philo);
-		pthread_mutex_lock(&philo->next->fork);
+		sem_wait(philo->next->fork);
 		ft_take_fork(philo);
 		ft_eat(philo);
-		pthread_mutex_unlock(&philo->next->fork);
-		pthread_mutex_unlock(&philo->fork);
+		sem_post(philo->next->fork);
+		sem_post(philo->fork);
 	}
 }
 
@@ -30,12 +30,12 @@ void	take_forks_impair(t_philo *philo)
 {
 	if (philo->alive)
 	{
-		pthread_mutex_lock(&philo->next->fork);
+		sem_wait(philo->next->fork);
 		ft_take_fork(philo);
-		pthread_mutex_lock(&philo->fork);
+		sem_wait(philo->fork);
 		ft_take_fork(philo);
 		ft_eat(philo);
-		pthread_mutex_unlock(&philo->fork);
-		pthread_mutex_unlock(&philo->next->fork);
+		sem_post(philo->fork);
+		sem_post(philo->next->fork);
 	}
 }

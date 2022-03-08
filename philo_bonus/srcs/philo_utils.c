@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:23:59 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 02:10:31 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 19:42:02 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo.h"
+#include "philo_bonus.h"
 
 long	get_timestamp(struct timeval start)
 {
@@ -78,16 +78,18 @@ int	is_dead(t_philo *philo)
 int	clean(t_env *env, t_philo *philos)
 {
 	ft_lstclear(&philos);
-	pthread_mutex_destroy(&env->output);
+	sem_close(env->output);
 	return (0);
 }
 
-void	go_afk(t_philo *philo)
+int	is_afk(t_philo *philo, int end_condition)
 {
-	pthread_mutex_lock(&philo->is_alive);
-	philo->alive = 0;
-	pthread_mutex_unlock(&philo->is_alive);
-	pthread_mutex_lock(&philo->vars->is_afk);
-	philo->vars->afk++;
-	pthread_mutex_unlock(&philo->vars->is_afk);
+	pthread_mutex_lock(&philo->is_eating);
+	if (philo->meal_counter == end_condition)
+	{
+		pthread_mutex_unlock(&philo->is_eating);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->is_eating);
+	return (0);
 }

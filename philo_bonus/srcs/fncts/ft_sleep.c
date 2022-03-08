@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:22:43 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 01:44:26 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 20:03:56 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo_bonus.h"
 
 void	ft_sleep(t_philo *philo)
 {
@@ -21,9 +21,9 @@ void	ft_sleep(t_philo *philo)
 	{
 		pthread_mutex_unlock(&philo->is_alive);
 		env = *philo->vars;
-		pthread_mutex_lock(&env.output);
+		sem_wait(env.output);
 		printf("%ld	%d	is sleeping\n", get_timestamp(env.start), philo->number);
-		pthread_mutex_unlock(&env.output);
+		sem_post(env.output);
 		usleep(env.time_to_sleep * 1000);
 	}
 	else

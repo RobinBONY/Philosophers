@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:20:01 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 02:16:07 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:54:36 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 t_philo	*ft_lstnew(int nb, t_env *env);
 t_philo	*ft_lstlast(t_philo *lst);
-void	ft_lstadd_back(t_philo **alst, t_philo *new);
+void	ft_lstadd_back(t_philo **alst, t_philo *newlst);
 void	ft_lstclear(t_philo **lst);
 
 #endif

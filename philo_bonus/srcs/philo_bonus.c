@@ -1,21 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 02:16:19 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 19:36:28 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo.h"
+#include "philo_bonus.h"
+
+void	execute_philo(t_philo *philo)
+{
+	int	ret;
+	
+	ret = pthread_create(&philo->life, NULL, fn_philo, philo);
+	if (ret)
+		exit(0);
+	manage_thread(philo);
+}
+
+void	manage_processes(t_env *env, t_philo *philo)
+{
+	int i;
+	int	status;
+	
+	i = 0;
+	status = 0;
+	while (i < env->nb_philo)
+	{
+		waitpid(-1, &status, 0);
+		if (status)
+		{
+			kill_philos(philo);
+			ft_die(env, status);
+		}
+		i++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
 	int		i;
-	int		ret;
 	t_env	env;
 	t_philo	*philo;
 
@@ -24,17 +52,16 @@ int	main(int argc, char **argv)
 	philo = init_philos(&env);
 	if (!philo)
 		return (0);
-	i = -1;
-	while (++i < env.nb_philo)
+	i = 0;
+	while (i < env.nb_philo)
 	{
-		ret = pthread_create(&env.thread_philos[i], NULL, fn_philo, philo);
-		if (ret)
+		philo->pid = fork();
+		if (philo->pid < 0)
 			return (clean(&env, philo));
+		if (philo->pid == 0)
+			execute_philo(philo);
 		philo = philo->next;
 	}
-	manage_threads(&env, philo);
-	i = -1;
-	while (++i < env.nb_philo)
-		pthread_join (env.thread_philos[i], NULL);
+	manage_processes(&env, philo);
 	return (clean(&env, philo));
 }

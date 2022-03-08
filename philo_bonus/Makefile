@@ -6,13 +6,13 @@
 #    By: rbony <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 08:34:54 by rbony             #+#    #+#              #
-#    Updated: 2022/03/05 01:52:47 by rbony            ###   ########lyon.fr    #
+#    Updated: 2022/03/08 19:23:45 by rbony            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME = philo_bonus
 
-SRCS = 	srcs/philo.c					\
+SRCS = 	srcs/philo_bonus.c					\
 		srcs/philo_utils.c				\
 		srcs/fncts/ft_atoi.c			\
 		srcs/fncts/ft_die.c				\
@@ -27,14 +27,14 @@ SRCS = 	srcs/philo.c					\
 		srcs/fncts/ft_think.c			\
 		srcs/fncts/initialisations.c	\
 		srcs/fncts/kill_philos.c		\
-		srcs/fncts/manage_threads.c		\
+		srcs/fncts/manage_thread.c		\
 		srcs/fncts/routine.c			\
-		srcs/fncts/take_forks.c			\
+		srcs/fncts/take_forks.c
 		
 
 OBJS = ${SRCS:.c=.o}
 
-HEADERS = 	headers/philo.h				\
+HEADERS = 	headers/philo_bonus.h
 
 CC = gcc
 RM = rm -f
@@ -43,17 +43,19 @@ FLAGS = -Wall -Wextra -Werror
 
 all: ${NAME}
 
+bonus: ${NAME}
+
 $(NAME): ${OBJS}
 	${CC} ${OBJS} -lpthread -o ${NAME}
 	
-%.o : %.c ${HEADERS}
-	${CC} -c $< -o ${<:.c=.o}
+%.o : %.c ${HEADERS} Makefile
+	${CC} ${FLAGS} -I headers -c $< -o ${<:.c=.o}
 
 clean:
 	${RM} ${OBJS}
 
 fclean:	clean
-	${RM} ${NAME} ${EXECUTABLE}
+	${RM} ${NAME}
 
 re:	fclean all
          
