@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/08 01:34:35 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 20:22:51 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*fn_philo(void *arg)
 		pthread_mutex_unlock(&philo->is_alive);
 		if (env.end_condition != -1)
 		{
-			if (philo->meal_counter == env.end_condition)
+			if (is_afk(philo, env.end_condition))
 				go_afk(philo);
 		}
 		if (philo->number % 2 == 1)

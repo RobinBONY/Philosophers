@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:20:01 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/08 01:54:36 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 20:22:23 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_env
 	struct timeval	start;
 }				t_env;
 
+int		is_afk(t_philo *philo, int end_condition);
 long	get_timestamp(struct timeval start);
 void	manage_threads(t_env *env, t_philo *philo);
 void	ft_eat(t_philo *philo);
