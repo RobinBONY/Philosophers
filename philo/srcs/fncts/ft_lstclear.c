@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:03:00 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 01:39:39 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:33:40 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo.h"
 
 void	ft_lstclear(t_philo **lst)
 {

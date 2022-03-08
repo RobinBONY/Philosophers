@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 02:16:19 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:34:52 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo.h"
+#include "philo.h"
 
 int	main(int argc, char **argv)
 {

@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 13:25:09 by rbony             #+#    #+#             */
-/*   Updated: 2021/11/02 16:30:42 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:33:18 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo.h"
 
 int	ft_isdigit(int c)
 {

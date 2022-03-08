@@ -6,7 +6,7 @@
 #    By: rbony <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 08:34:54 by rbony             #+#    #+#              #
-#    Updated: 2022/03/05 01:52:47 by rbony            ###   ########lyon.fr    #
+#    Updated: 2022/03/08 01:36:11 by rbony            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,12 @@ SRCS = 	srcs/philo.c					\
 		srcs/fncts/kill_philos.c		\
 		srcs/fncts/manage_threads.c		\
 		srcs/fncts/routine.c			\
-		srcs/fncts/take_forks.c			\
+		srcs/fncts/take_forks.c
 		
 
 OBJS = ${SRCS:.c=.o}
 
-HEADERS = 	headers/philo.h				\
+HEADERS = 	headers/philo.h
 
 CC = gcc
 RM = rm -f
@@ -46,8 +46,8 @@ all: ${NAME}
 $(NAME): ${OBJS}
 	${CC} ${OBJS} -lpthread -o ${NAME}
 	
-%.o : %.c ${HEADERS}
-	${CC} -c $< -o ${<:.c=.o}
+%.o : %.c ${HEADERS} Makefile
+	${CC} ${FLAGS} -I headers -c $< -o ${<:.c=.o}
 
 clean:
 	${RM} ${OBJS}

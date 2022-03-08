@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:41:44 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 01:38:59 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:33:47 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo.h"
 
 t_philo	*ft_lstnew(int nb, t_env *env)
 {

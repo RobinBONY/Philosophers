@@ -6,11 +6,11 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:25:34 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/05 01:41:28 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/03/08 01:34:12 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/philo.h"
+#include "philo.h"
 
 int	init_env(int argc, char **argv, t_env *env)
 {
