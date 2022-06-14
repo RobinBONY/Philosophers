@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:20:01 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/08 20:22:23 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/06/13 11:24:38 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		clean(t_env *env, t_philo *philos);
 int		will_die(t_philo philo);
 void	*ft_sleep_until_death(t_philo *philo);
 void	go_afk(t_philo *philo);
-void    kill_philos(t_philo *philo);
+void	kill_philos(t_philo *philo);
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);

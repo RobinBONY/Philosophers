@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eat.c                                           :+:      :+:    :+:   */
+/*   ft_afk.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 16:22:43 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/08 19:42:36 by rbony            ###   ########lyon.fr   */
+/*   Created: 2022/06/13 11:23:54 by rbony             #+#    #+#             */
+/*   Updated: 2022/06/13 11:24:24 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
-void	ft_eat(t_philo *philo)
+void	go_afk(t_philo *philo)
 {
-	t_env	env;
-
 	pthread_mutex_lock(&philo->is_alive);
-	if (philo->alive)
+	philo->alive = 0;
+	pthread_mutex_unlock(&philo->is_alive);
+	pthread_mutex_lock(&philo->vars->is_afk);
+	philo->vars->afk++;
+	pthread_mutex_unlock(&philo->vars->is_afk);
+}
+
+int	is_afk(t_philo *philo, int end_condition)
+{
+	pthread_mutex_lock(&philo->is_eating);
+	if (philo->meal_counter == end_condition)
 	{
-		pthread_mutex_unlock(&philo->is_alive);
-		env = *philo->vars;
-		pthread_mutex_lock(&philo->is_eating);
-		philo->last_meal = get_timestamp(env.start);
-		philo->meal_counter++;
 		pthread_mutex_unlock(&philo->is_eating);
-		sem_wait(env.output);
-		printf("%ld	%d	is eating\n", get_timestamp(env.start), philo->number);
-		sem_post(env.output);
-		usleep(env.time_to_eat * 1000);
+		return (1);
 	}
-	else
-		pthread_mutex_unlock(&philo->is_alive);
+	pthread_mutex_unlock(&philo->is_eating);
+	return (0);
 }

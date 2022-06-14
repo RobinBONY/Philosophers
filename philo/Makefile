@@ -6,7 +6,7 @@
 #    By: rbony <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 08:34:54 by rbony             #+#    #+#              #
-#    Updated: 2022/03/08 01:42:44 by rbony            ###   ########lyon.fr    #
+#    Updated: 2022/06/14 15:07:42 by rbony            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS = 	srcs/philo.c					\
 		srcs/fncts/kill_philos.c		\
 		srcs/fncts/manage_threads.c		\
 		srcs/fncts/routine.c			\
-		srcs/fncts/take_forks.c
+		srcs/fncts/take_forks.c			\
+		srcs/fncts/ft_afk.c
 		
 
 OBJS = ${SRCS:.c=.o}
