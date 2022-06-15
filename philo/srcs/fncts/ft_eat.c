@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:22:43 by rbony             #+#    #+#             */
-/*   Updated: 2022/06/13 10:20:29 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 10:54:18 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_eat(t_philo *philo)
 		pthread_mutex_lock(&env.output);
 		printf("%ld	%d	is eating\n", get_timestamp(env.start), philo->number);
 		pthread_mutex_unlock(&env.output);
-		usleep(env.time_to_eat * 1000);
+		ft_usleep(philo, get_timestamp(env.start) + env.time_to_eat);
 	}
 	else
 		pthread_mutex_unlock(&philo->is_alive);

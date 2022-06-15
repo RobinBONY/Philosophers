@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:41:44 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/08 01:33:47 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 10:35:53 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_philo	*ft_lstnew(int nb, t_env *env)
 	newlst->vars = env;
 	newlst->next = NULL;
 	newlst->alive = 1;
-	pthread_mutex_init(&newlst->fork, NULL);
+	newlst->fork.available = 1;
+	pthread_mutex_init(&newlst->fork.is_available, NULL);
 	pthread_mutex_init(&newlst->is_alive, NULL);
 	pthread_mutex_init(&newlst->is_eating, NULL);
 	return (newlst);

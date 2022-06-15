@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:20:01 by rbony             #+#    #+#             */
-/*   Updated: 2022/06/13 11:24:38 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 10:53:51 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <time.h>
 # include <pthread.h>
 
+typedef struct s_fork
+{
+	pthread_mutex_t	is_available;
+	int				available;
+}				t_fork;
+
 typedef struct s_philo
 {
 	int				number;
@@ -28,7 +34,7 @@ typedef struct s_philo
 	int				meal_counter;
 	int				alive;
 	pthread_mutex_t	is_alive;
-	pthread_mutex_t	fork;
+	struct s_fork	fork;
 	struct s_env	*vars;
 	struct s_philo	*next;
 }				t_philo;
@@ -75,5 +81,6 @@ t_philo	*ft_lstnew(int nb, t_env *env);
 t_philo	*ft_lstlast(t_philo *lst);
 void	ft_lstadd_back(t_philo **alst, t_philo *newlst);
 void	ft_lstclear(t_philo **lst);
+void	ft_usleep(t_philo *philo, int limit);
 
 #endif

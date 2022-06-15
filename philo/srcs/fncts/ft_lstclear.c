@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:03:00 by rbony             #+#    #+#             */
-/*   Updated: 2022/03/08 01:33:40 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 10:56:42 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_lstclear(t_philo **lst)
 	while (i < nb_philo)
 	{
 		last = (*lst)->next;
-		pthread_mutex_destroy(&(*lst)->fork);
+		pthread_mutex_destroy(&(*lst)->fork.is_available);
 		pthread_mutex_destroy(&(*lst)->is_alive);
 		pthread_mutex_destroy(&(*lst)->is_eating);
 		free(*lst);
