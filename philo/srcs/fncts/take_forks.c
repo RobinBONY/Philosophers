@@ -6,7 +6,7 @@
 /*   By: rbony <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 06:33:41 by rbony             #+#    #+#             */
-/*   Updated: 2022/06/15 10:57:21 by rbony            ###   ########lyon.fr   */
+/*   Updated: 2022/10/03 12:38:17 by rbony            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ static void	pick_fork(t_philo *philo)
 
 void	take_forks_pair(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->is_alive);
 	if (philo->alive)
 	{
+		pthread_mutex_unlock(&philo->is_alive);
 		pick_fork(philo);
 		ft_take_fork(philo);
 		pick_fork(philo->next);
@@ -52,12 +54,16 @@ void	take_forks_pair(t_philo *philo)
 		drop_fork(philo->next);
 		drop_fork(philo);
 	}
+	else
+		pthread_mutex_unlock(&philo->is_alive);
 }
 
 void	take_forks_impair(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->is_alive);
 	if (philo->alive)
 	{
+		pthread_mutex_unlock(&philo->is_alive);
 		pick_fork(philo->next);
 		ft_take_fork(philo);
 		pick_fork(philo);
@@ -66,4 +72,6 @@ void	take_forks_impair(t_philo *philo)
 		drop_fork(philo);
 		drop_fork(philo->next);
 	}
+	else
+		pthread_mutex_unlock(&philo->is_alive);
 }
